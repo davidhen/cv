@@ -1,0 +1,91 @@
+---
+name: David
+surname: Henderson
+position: "Research Fellow"
+address: "School of Health and Social Care, Edinburgh Napier University"
+profilepic: me.png
+www: davidhen.com
+email: "D.Henderson@napier.ac.uk"
+twitter: _davidhen
+github: davidhen
+date: "`r format(Sys.time(), '%B %Y')`"
+aboutme: "I was the first person to successfully create a national health and social care dataset for research in Scotland and have expert knowledge on administrative social care data here. My current post builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow.  I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. "
+output: vitae::twentyseconds
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+```
+
+# Skills
+ * Data Analysis in Safe Haven environments. I have an ONS Safe Researcher Training Certificate
+ * Cleaning, manipulating, and modelling large, messy data using R and R Studio. Predominantly with `tidyverse` tools but also `data.table`.
+ * Data Visualisation. I have advanced skills using the `ggplot2` package and extensions.
+ * `RMarkdown` for: code sharing, report writing via $LaTeX$, building websites via `blogdown`, and writing a CV.
+
+# Education
+
+```{r}
+library(tibble)
+tribble(
+  ~ Degree, ~ Year, ~ Institution, ~ Where,
+  "PhD Urban Studies", "2015-2019", "University of Glasgow", "Viva passed with no corrections 16th Dec 2019",
+  "Master of Research in Health Research", "2013-2015", "University of Stirling", "with Merit",
+  "PG Certificate Advanced Practice", "2012-2013", "University of Dundee", "",
+  "BSc Nursing", "2006-2009", "University of Stirling", "with Merit"
+) %>% 
+  detailed_entries(Degree, Year, Institution, Where)
+```
+
+# Employment History
+
+```{r}
+tribble(
+  ~ job_title, ~ year, ~ employer, ~ notes,
+  "Research Fellow", "2019-", "Edinburgh Napier University", "affiliated with Scottish Centre for Administrative Data Research",
+  "Research Assistant", "2018-2019", "University of Glasgow", "Urban Big Data Centre",
+  "Nurse Practitioner", "2015-2018", "NHS24", "part-time",
+  "Staff Nurse", "2010-2015", "NHS Highland", "Medical High Dependency Unit, Acute Medical Admissions Unit, Cardiology step-down",
+  "Healthcare Assistant", "2008-2010", "NHS Highland", "ad-hoc Nurse Bank",
+  "Assistant Director/Locations Scout", "2003-2006", "Self-employed", "various drama productions",
+  "Lance Corporal", "1995-2002", "HM Forces", "Pipes & Drums/Machine Gun platoon, 1st Bn The Highlanders (Seaforth, Gordons and Camerons)") %>% 
+  detailed_entries(job_title, year, employer, notes)
+```
+
+# Talks
+
+```{r}
+tribble(
+  ~year, ~title, ~desc,
+  "2016", "Data Linkage Scotland - showcase", "Invited talk at event co-hosted by Farr Institute, ADRC-S, and UBDC",
+  "2017", "ADRN conference Edinburgh", "Analysis of Scottish Government Open Social Care Data",
+  "2018", "Not exactly rocket science", "Podcast where health researchers are invited to explain their research to non-health researchers"
+) %>% 
+  brief_entries(
+    title,
+    year, 
+    desc
+  )
+```
+
+# Publications
+
+```{r}
+scholar::get_publications("tGbv8fcAAAAJ&hl") %>% 
+  distinct(title, .keep_all = TRUE) %>%
+  transmute(bibtype = "Article", 
+            author = as.character(author),
+            title = as.character(title),
+            journaltitle = as.character(journal), 
+            year, 
+            number = as.character(number),
+            key = row_number()) %>% 
+  arrange(-year) %>% 
+  slice(1:4) %>% 
+  RefManageR::as.BibEntry() %>% 
+  RefManageR::WriteBib("davidaghenderson.bib")
+
+bibliography_entries("davidaghenderson.bib")
+```
+
