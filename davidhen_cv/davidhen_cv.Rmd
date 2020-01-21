@@ -9,7 +9,7 @@ email: "D.Henderson@napier.ac.uk"
 twitter: _davidhen
 github: davidhen
 date: "`r format(Sys.time(), '%B %Y')`"
-aboutme: "I was the first person to successfully create a national health and social care dataset for research in Scotland and have expert knowledge on administrative social care data here. My current post builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow.  I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. "
+aboutme: "I was the first person to successfully create a national linked health and social care dataset for research in Scotland and have expert knowledge on administrative social care data here. My current post builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow.  I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. This clincal knowledge and experience has proved invaluable when wrangling complex healthcare datasets e.g. prescribing and unscheduled care"
 output: vitae::twentyseconds
 ---
 
