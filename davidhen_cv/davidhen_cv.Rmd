@@ -9,20 +9,28 @@ email: "D.Henderson@napier.ac.uk"
 twitter: _davidhen
 github: davidhen
 date: "`r format(Sys.time(), '%B %Y')`"
-aboutme: "I was the first person to successfully negotiate access to, and produce results from, a national linked health and social care dataset for research in Scotland. I have expert knowledge on administrative social care data here. My current post builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow.  I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. This clincal knowledge and experience has proved invaluable when wrangling complex healthcare datasets e.g. prescribing and unscheduled care"
+aboutme: "I was the first person to successfully negotiate access to, and produce results from, a national linked health and social care dataset for research in Scotland. I have expert knowledge on administrative social care data here. My current post with the Scottish Centre of Administrative Data Research builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow. In light of the COVID-19 pandemic, I have led a team of experts in acquring a new research dataset for investigating mortality in care homes. Furthermore, I advise a group on care home data and analytics administered through Public Health Scotland to provide expertise to the Scottish Government. I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. This clincal knowledge and experience has proved invaluable when wrangling complex healthcare datasets e.g. prescribing and unscheduled care"
 output: vitae::twentyseconds
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
+library(dplyr)
 ```
 
+
 # Skills
- * Data Analysis in Safe Haven environments. I have an ONS Safe Researcher Training Certificate
- * Cleaning, manipulating, and modelling large, messy data using R and R Studio. Predominantly with `tidyverse` tools but also `data.table`.
+ * Advanced Data Analysis in Safe Haven environments. I have an ONS Safe Researcher Training Certificate and a track record of delivering large projects through Information Governance protocols to make population data linkage with anonymised individual-level data a reality.
+ * Cleaning, validating, and manipulating large, messy data using R and R Studio. Predominantly with `tidyverse` tools but also `data.table` for the largest in-memory datasets. Up-to-date knowledge of fast-moving changes in R software development and where R is and is not appropriate software to use.
+ * Modelling using standard regression and time-to-event techniques. Knowledge of mixture models - specifically application of Latent Class Analysis. 
  * Data Visualisation. I have advanced skills using the `ggplot2` package and extensions.
- * `RMarkdown` for: code sharing, report writing via $LaTeX$, building websites via `blogdown`, and writing a CV.
+ * `RMarkdown` for: code sharing, report writing via $LaTeX$, building websites, and writing a CV.
+ * Version control with Git and GitHub
+
+\bigskip
+\bigskip
+
 
 # Education
 
@@ -30,13 +38,16 @@ library(vitae)
 library(tibble)
 tribble(
   ~ Degree, ~ Year, ~ Institution, ~ Where,
-  "PhD Urban Studies", "2015-2019", "University of Glasgow", "Viva passed with no corrections 16th Dec 2019",
+  "PhD Urban Studies (Urban Big Data Centre)", "2015-2019", "University of Glasgow", "Viva passed with no corrections 16th Dec 2019",
   "Master of Research in Health Research", "2013-2015", "University of Stirling", "with Merit",
   "PG Certificate Advanced Practice", "2012-2013", "University of Dundee", "",
   "BSc Nursing", "2006-2009", "University of Stirling", "with Merit"
 ) %>% 
   detailed_entries(Degree, Year, Institution, Where)
 ```
+
+\bigskip
+\bigskip
 
 # Employment History
 
@@ -53,21 +64,8 @@ tribble(
   detailed_entries(job_title, year, employer, notes)
 ```
 
-# Talks
-
-```{r}
-tribble(
-  ~year, ~title, ~desc,
-  "2016", "Data Linkage Scotland - showcase", "Invited talk at event co-hosted by Farr Institute, ADRC-S, and UBDC",
-  "2017", "ADRN conference Edinburgh", "Analysis of Scottish Government Open Social Care Data",
-  "2018", "Not exactly rocket science", "Podcast where health researchers are invited to explain their research to non-health researchers"
-) %>% 
-  brief_entries(
-    title,
-    year, 
-    desc
-  )
-```
+\bigskip
+\bigskip
 
 # Publications
 
@@ -82,10 +80,71 @@ scholar::get_publications("tGbv8fcAAAAJ&hl") %>%
             number = as.character(number),
             key = row_number()) %>% 
   arrange(-year) %>% 
-  slice(1:4) %>% 
+  slice(1:5, 7) %>%
+  mutate(journaltitle = case_when(
+    title == "Multimorbidity and social care: exploiting emerging administrative data sources in Scotland" ~ 
+      "PhD THESIS, University of Glasgow",
+    title == "Deaths in Scottish care homes and COVID-19" ~ 
+      "International Long-Term Care Policy Network, CPEC-LSE",
+    TRUE ~ as.character(journaltitle)),
+    year = as.character(year),
+    number = case_when(
+      title == "Linkage of national health and social care data: a cross-sectional study of multimorbidity and social care use in people aged over 65 years in Scotland" ~ "afaa134",
+      journaltitle == "medRxiv" ~ "PREPRINT",
+      TRUE ~ as.character(number)
+    )) %>% 
+  add_row(bibtype = "Article", author = "C MacRae, SW Mercer, B Guthrie, D Henderson",
+          title = "Prevalence of comorbidity in chronic kidney disease: a large cross-sectional study",
+          journaltitle = "British Journal of General Practice", year = "In Press", 
+          number = "", key = 7L, .before = 1) %>%
+  #add_row(bibtype = "Article", author = "S Mercer, C Lunan, C MacRae, D Henderson, B Fitzpatrick, J Reilly",
+  #        title = "Half a century of the inverse care law: a comparison of general practitioner job satisfaction and patient satisfaction in deprived and affluent areas of Scotland at national level",
+  #        journaltitle = "Annals of Family Medicine", year = "Submitted", 
+  #        number = "", key = 8L, .before = 1) %>%
   RefManageR::as.BibEntry() %>% 
   RefManageR::WriteBib("davidaghenderson.bib")
+  
 
 bibliography_entries("davidaghenderson.bib")
 ```
+
+\bigskip
+\bigskip
+
+# Talks
+
+```{r}
+tribble(
+  ~year, ~title, ~desc,
+  "2016", "Data Linkage Scotland - showcase", "Invited talk at event co-hosted by Farr Institute, ADRC-S, and UBDC",
+  "2017", "ADRN conference Edinburgh", "Analysis of Scottish Government Open Social Care Data",
+  "2018", "Not exactly rocket science", "Podcast where health researchers are invited to explain their research to non-health researchers",
+  "2018", "ADRN conference Belfast", "Validation of the Scottish Social Care Survey using data from Renfrewshire Council",
+  "2018", "IPDLN conference Banff, Canada", "Multimorbidity and access to social care: exploiting emerging administrative data sources in Scotland",
+  "2019", "ADRN conference Cardiff", "Association between receipt of social care and multimorbidity: evidence from a population-sized cohort in Scotland"
+) %>% 
+  brief_entries(
+    title,
+    year, 
+    desc
+  )
+```
+
+\bigskip
+\bigskip
+
+# Achievements
+
+```{r}
+tribble(
+  ~year, ~title, ~desc,
+    "2012", "Early Clinical Career Fellowship (ECCF)", "NHS Education for Scotland fellowship offering an opportunity for highly enthusiastic,talented and motivated nurses and midwives to develop personally, professionally and academically, at an early stage in their career") %>% 
+  brief_entries(
+    title,
+    year, 
+    desc
+  )
+```
+
+
 
