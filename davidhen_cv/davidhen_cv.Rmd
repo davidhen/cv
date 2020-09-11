@@ -9,7 +9,7 @@ email: "D.Henderson@napier.ac.uk"
 twitter: _davidhen
 github: davidhen
 date: "`r format(Sys.time(), '%B %Y')`"
-aboutme: "I was the first person to successfully negotiate access to, and produce results from, a national linked health and social care dataset for research in Scotland. I have expert knowledge on administrative social care data here. My current post with the Scottish Centre of Administrative Data Research builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow. In light of the COVID-19 pandemic, I have led a team of experts in acquring a new research dataset for investigating mortality in care homes. Furthermore, I advise a group on care home data and analytics administered through Public Health Scotland to provide expertise to the Scottish Government. I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. This clincal knowledge and experience has proved invaluable when wrangling complex healthcare datasets e.g. prescribing and unscheduled care"
+aboutme: "I was the first person to successfully negotiate access to, and produce results from, a national linked health and social care dataset for research in Scotland. I have expert knowledge on administrative social care data here. This project showed the first empirical link between multimorbidity and receipt of social care. My current post with the Scottish Centre of Administrative Data Research builds on the dataset created as part of my PhD at the Urban Big Data Centre in Glasgow. In light of the COVID-19 pandemic, I have led a team of experts in acquring a new research dataset for investigating mortality in care homes. Furthermore, I advise a group on care home data and analytics administered through Public Health Scotland to provide expertise to the Scottish Government. I am a registered Nurse and until recently worked part-time for NHS 24 as a Nurse Practitioner. Previous nursing experience included Medical High Dependency and Acute Medical Admissions at Raigmore Hospital in Inverness. This clincal knowledge and experience has proved invaluable when wrangling complex healthcare datasets e.g. prescribing and unscheduled care"
 output: vitae::twentyseconds
 ---
 
@@ -24,6 +24,7 @@ library(dplyr)
  * Advanced Data Analysis in Safe Haven environments. I have an ONS Safe Researcher Training Certificate and a track record of delivering large projects through Information Governance protocols to make population data linkage with anonymised individual-level data a reality.
  * Cleaning, validating, and manipulating large, messy data using R and R Studio. Predominantly with `tidyverse` tools but also `data.table` for the largest in-memory datasets. Up-to-date knowledge of fast-moving changes in R software development and where R is and is not appropriate software to use.
  * Modelling using standard regression and time-to-event techniques. Knowledge of mixture models - specifically application of Latent Class Analysis. 
+ * In-depth knowledge of measures of multimorbidity (including clustering), how to operationalise these measures using electronic health and social care records, and the strengths and limitations of these measures. 
  * Data Visualisation. I have advanced skills using the `ggplot2` package and extensions.
  * `RMarkdown` for: code sharing, report writing via $LaTeX$, building websites, and writing a CV.
  * Version control with Git and GitHub
@@ -97,10 +98,10 @@ scholar::get_publications("tGbv8fcAAAAJ&hl") %>%
           title = "Prevalence of comorbidity in chronic kidney disease: a large cross-sectional study",
           journaltitle = "British Journal of General Practice", year = "In Press", 
           number = "", key = 7L, .before = 1) %>%
-  #add_row(bibtype = "Article", author = "S Mercer, C Lunan, C MacRae, D Henderson, B Fitzpatrick, J Reilly",
-  #        title = "Half a century of the inverse care law: a comparison of general practitioner job satisfaction and patient satisfaction in deprived and affluent areas of Scotland at national level",
-  #        journaltitle = "Annals of Family Medicine", year = "Submitted", 
-  #        number = "", key = 8L, .before = 1) %>%
+  add_row(bibtype = "Article", author = "S Mercer, C Lunan, C MacRae, D Henderson, B Fitzpatrick, J Reilly",
+          title = "Half a century of the inverse care law: a comparison of general practitioner job satisfaction and patient satisfaction in deprived and affluent areas of Scotland at national level",
+          journaltitle = "Annals of Family Medicine", year = "Submitted", 
+        number = "", key = 9L, .before = 1) %>%
   RefManageR::as.BibEntry() %>% 
   RefManageR::WriteBib("davidaghenderson.bib")
   
